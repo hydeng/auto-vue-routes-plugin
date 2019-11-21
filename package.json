@@ -4,7 +4,7 @@
   "description": "one wepack-plugin for auto build vue-routes config file by vue-pages",
   "main": "dist/index.js",
   "scripts": {
-    "build": "rollup -c"
+    "build": "rollup --config config/rollup.config.js"
   },
   "repository": {
     "type": "git",
