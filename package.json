@@ -1,0 +1,24 @@
+{
+  "name": "auto-vue-routes-plugin",
+  "version": "1.0.0",
+  "description": "one wepack-plugin for auto build vue-routes config file by vue-pages",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "rollup -c"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hydeng/autoVueRoutesPlugin"
+  },
+  "keywords": [
+    "vue-routes"
+  ],
+  "author": "yuanduy",
+  "license": "ISC",
+  "devDependencies": {
+    "chokidar": "^3.3.0",
+    "rollup": "^1.27.2",
+    "rollup-plugin-node-resolve": "^5.2.0"
+  },
+  "homepage": "https://github.com/hydeng/autoVueRoutesPlugin"
+}
