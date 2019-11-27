@@ -75,7 +75,7 @@ async function build(config = {}) {
   let pages =
     Object.keys(config).length === 0
       ? []
-      : await addMeta(await fileManager.getAllPages(config.entry));
+      : await addMeta(await fileManager.getAllPages(config.entry, config.test));
   if (isCacheExpired(pages)) {
     const routes = routeManager.getRoutes(pages);
     fileManager.setES6ModuleFile(config.output, routes);

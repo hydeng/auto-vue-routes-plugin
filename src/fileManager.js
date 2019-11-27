@@ -98,10 +98,9 @@ function sortGlobOutput(globOutputArray) {
  * 遍历目录下所有视图文件
  * @param {String} dirPath - 文件路径
  */
-function getAllPages(dirPath = "", fileTest = /index\.vue$/) {
+function getAllPages(dirPath = "", fileTest = /\.vue$/) {
   return new Promise(resolve => {
     let files = {};
-    let fileName = "index.vue";
     let allFiles = glob.sync(dirPath + path.sep + "**", {});
 
     const basePath = dirPath.replace(/\\/g, "/");
@@ -110,6 +109,7 @@ function getAllPages(dirPath = "", fileTest = /index\.vue$/) {
 
     for (let i = 0; i < allFiles.length; i++) {
       const f = allFiles[i];
+      const fileName = f.split('/').pop();
       const key = f.replace(basePath + "/", "").replace("/" + fileName, "");
       if (fileTest.test(f) && !files[key]) {
         files[key] = {

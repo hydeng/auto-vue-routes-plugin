@@ -142,10 +142,9 @@ function sortGlobOutput(globOutputArray) {
  * 遍历目录下所有视图文件
  * @param {String} dirPath - 文件路径
  */
-function getAllPages(dirPath = "", fileTest = /index\.vue$/) {
+function getAllPages(dirPath = "", fileTest = /\.vue$/) {
   return new Promise(resolve => {
     let files = {};
-    let fileName = "index.vue";
     let allFiles = glob.sync(dirPath + path.sep + "**", {});
 
     const basePath = dirPath.replace(/\\/g, "/");
@@ -154,6 +153,7 @@ function getAllPages(dirPath = "", fileTest = /index\.vue$/) {
 
     for (let i = 0; i < allFiles.length; i++) {
       const f = allFiles[i];
+      const fileName = f.split('/').pop();
       const key = f.replace(basePath + "/", "").replace("/" + fileName, "");
       if (fileTest.test(f) && !files[key]) {
         files[key] = {
@@ -590,7 +590,7 @@ async function build(config = {}) {
   let pages =
     Object.keys(config).length === 0
       ? []
-      : await addMeta(await fileManager.getAllPages(config.entry));
+      : await addMeta(await fileManager.getAllPages(config.entry, config.test));
   if (isCacheExpired(pages)) {
     const routes = routeManager.getRoutes(pages);
     fileManager.setES6ModuleFile(config.output, routes);
