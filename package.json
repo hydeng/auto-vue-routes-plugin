@@ -1,6 +1,6 @@
 {
   "name": "auto-vue-routes-plugin",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "one wepack-plugin for auto build vue-routes config file by vue-pages",
   "main": "dist/index.js",
   "scripts": {

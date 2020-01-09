@@ -4,11 +4,11 @@
 // const path = require("path");
 const chokidar = require("chokidar");
 
-const fileManager = require("./fileManager");
-const routeManager = require("./routeManager");
+// const fileManager = require("./fileManager");
+// const routeManager = require("./routeManager");
 
-// import fileManager from "./fileManager";
-// import routeManager from "./routeManager";
+import fileManager from "./fileManager";
+import routeManager from "./routeManager";
 
 function AutoVueRoutesPlugin(options) {
   this.data = {

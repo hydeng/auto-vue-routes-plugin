@@ -37,12 +37,12 @@ function sortArrayChildren(arrays = []) {
   return noUndefined;
 }
 
-// export default {
-//   getPageID: getPageID,
-//   sortArrayChildren: sortArrayChildren
-// };
-
-module.exports = {
+export default {
   getPageID: getPageID,
   sortArrayChildren: sortArrayChildren
 };
+
+// module.exports = {
+//   getPageID: getPageID,
+//   sortArrayChildren: sortArrayChildren
+// };
