@@ -4,8 +4,9 @@
 const fs = require("fs");
 const path = require("path");
 const glob = require("glob");
-// const utils = require('./_utils');
-import utils from "./_utils";
+
+const utils = require('./_utils');
+// import utils from "./_utils";
 
 /**
  * 确保目录路径存在，若不存在则自动创建
@@ -96,14 +97,25 @@ function sortGlobOutput(globOutputArray) {
 
 /**
  * 遍历目录下所有视图文件
- * @param {String} dirPath - 文件路径
+ * @param {String} entryPath - 入口
  */
-function getAllPages(dirPath = "", fileTest = /\.vue$/) {
+function getAllPages(entryPath = "", fileTest = /\.vue$/, outputPath = "") {
+  let realeasePath = '';
+  let commonPath = '';
+  let deep = 0;
+  for (let i = 0; i < outputPath.length; i++) {
+    if (entryPath.indexOf(outputPath.substr(0, i)) < 0) {
+      commonPath = outputPath.substr(0, i-1);
+      realeasePath = entryPath.replace(commonPath, '');
+      deep = (outputPath.replace(commonPath, '').split('\\')).length;
+      break;
+    }
+  }
   return new Promise(resolve => {
     let files = {};
-    let allFiles = glob.sync(dirPath + path.sep + "**", {});
+    let allFiles = glob.sync(entryPath + path.sep + "**", {});
 
-    const basePath = dirPath.replace(/\\/g, "/");
+    const basePath = entryPath.replace(/\\/g, "/");
 
     allFiles = sortGlobOutput(allFiles); //统一排序
 
@@ -116,7 +128,8 @@ function getAllPages(dirPath = "", fileTest = /\.vue$/) {
           filePath: f.replace("/" + fileName, ""),
           name: fileName,
           id: utils.getPageID(key),
-          path: key
+          path: key,
+          realeasePath: (new Array(deep)).join('../') + realeasePath.replace(/\\/g, "/")
         };
       }
     }
@@ -374,4 +387,6 @@ const fileManager = {
   setES6ModuleFile: setES6ModuleFile
 };
 
-export default fileManager;
+// export default fileManager;
+
+module.exports = fileManager;

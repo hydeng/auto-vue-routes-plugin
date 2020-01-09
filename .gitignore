@@ -1,4 +1,6 @@
 node_modules/
+test/
+config/webpack.config.js
 
 # Log files
 npm-debug.log*

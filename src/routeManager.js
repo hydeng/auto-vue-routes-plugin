@@ -1,8 +1,8 @@
 /**
  * 路由相关操作
  */
-// const utils = require('./_utils');
-import utils from "./_utils";
+const utils = require('./_utils');
+// import utils from "./_utils";
 
 /**
  * 生成单个路由
@@ -13,7 +13,8 @@ function getRoute(pageConfig) {
   const webpackChunkName = pageConfig.meta.webpackChunkName
     ? pageConfig.meta.webpackChunkName
     : pageConfig.id;
-  const requireFile = "../pages/" + pageConfig.path + "/" + pageConfig.name;
+  const requireFile = pageConfig.realeasePath + "/" + pageConfig.path + "/" + pageConfig.name;
+  
 
   return {
     path: "/" + pageConfig.path,
@@ -115,4 +116,5 @@ const routeManager = {
   getRoutes: getRoutes
 };
 
-export default routeManager;
+// export default routeManager;
+module.exports = routeManager;

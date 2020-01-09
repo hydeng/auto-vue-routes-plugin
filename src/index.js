@@ -3,11 +3,12 @@
  */
 // const path = require("path");
 const chokidar = require("chokidar");
-// const fileManager = require("./fileManager");
-// const routeManager = require("./routeManager");
 
-import fileManager from "./fileManager";
-import routeManager from "./routeManager";
+const fileManager = require("./fileManager");
+const routeManager = require("./routeManager");
+
+// import fileManager from "./fileManager";
+// import routeManager from "./routeManager";
 
 function AutoVueRoutesPlugin(options) {
   this.data = {
@@ -75,7 +76,7 @@ async function build(config = {}) {
   let pages =
     Object.keys(config).length === 0
       ? []
-      : await addMeta(await fileManager.getAllPages(config.entry, config.test));
+      : await addMeta(await fileManager.getAllPages(config.entry, config.test, config.output));
   if (isCacheExpired(pages)) {
     const routes = routeManager.getRoutes(pages);
     fileManager.setES6ModuleFile(config.output, routes);
@@ -117,4 +118,6 @@ function watch(config = {}, callback) {
     });
 }
 
-export default AutoVueRoutesPlugin;
+// export default AutoVueRoutesPlugin;
+
+module.exports = AutoVueRoutesPlugin;
