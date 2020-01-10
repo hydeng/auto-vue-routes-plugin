@@ -1,5 +1,6 @@
 node_modules/
 test/
+bin/
 config/webpack.config.js
 
 # Log files

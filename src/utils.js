@@ -82,5 +82,4 @@ function getRoutesHaveAuth(routes = [], auths = {}) {
   });
 }
 
-export { getRoutesNoRequireAuth, getRoutesHaveAuth, getPathID, filterRoutes };
-// module.exports = { getRoutesNoRequireAuth, getRoutesHaveAuth, getPathID, filterRoutes };
+module.exports = { getRoutesNoRequireAuth, getRoutesHaveAuth, getPathID, filterRoutes };

@@ -1,11 +1,10 @@
 {
   "name": "auto-vue-routes-plugin",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "one wepack-plugin for auto build vue-routes config file by vue-pages",
   "main": "dist/index.js",
   "scripts": {
-    "build": "rollup --config config/rollup.config.js",
-    "test": "webpack --colors --config ./config/webpack.config.js"
+    "build": "rollup --config config/rollup.config.js"
   },
   "repository": {
     "type": "git",
@@ -23,9 +22,8 @@
   },
   "devDependencies": {
     "rollup": "^1.27.2",
-    "rollup-plugin-node-resolve": "^5.2.0",
-    "webpack": "^4.41.2",
-    "webpack-cli": "^3.3.10"
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0"
   },
   "homepage": "https://github.com/hydeng/auto-vue-routes-plugin"
 }

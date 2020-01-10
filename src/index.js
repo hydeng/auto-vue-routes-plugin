@@ -1,14 +1,10 @@
 /**
  * 根据视图文件夹自动生成默认的路由配置
  */
-// const path = require("path");
 const chokidar = require("chokidar");
 
-// const fileManager = require("./fileManager");
-// const routeManager = require("./routeManager");
-
-import fileManager from "./fileManager";
-import routeManager from "./routeManager";
+const fileManager = require("./fileManager");
+const routeManager = require("./routeManager");
 
 function AutoVueRoutesPlugin(options) {
   this.data = {
@@ -20,10 +16,8 @@ function AutoVueRoutesPlugin(options) {
 }
 
 AutoVueRoutesPlugin.prototype.apply = function(compiler) {
-  const that = this;
-  compiler.plugin("done", function() {
-    install(that.data);
-  });
+  //插件安装时直接执行，不使用钩子
+  install(this.data);
 };
 
 // 简单cache存储视图配置信息
@@ -50,6 +44,7 @@ async function addMeta(pages) {
  * @param {Object} config 配置信息，默认为false是为了照顾在最外层config文件中写了vueRoutesAutoBuilder这个key就开启该功能的场景
  */
 function install(config = false) {
+  console.log('\x1B[32m%s\x1b[0m:','auto-vue-routes-plugin: install ' + config.entry);
   if (config) {
     config.isWatch ? watch(config, build) : build(config);
   }
@@ -102,22 +97,25 @@ function watch(config = {}, callback) {
       }
     )
     .on("add", () => {
+      console.log('\x1B[32m%s\x1b[0m:','auto-vue-routes-plugin: add ' + config.entry);
       callback(config);
     })
     .on("addDir", () => {
+      console.log('\x1B[32m%s\x1b[0m:','auto-vue-routes-plugin: addDir ' + config.entry);
       callback(config);
     })
     .on("ready", () => {
+      console.log('\x1B[32m%s\x1b[0m:','auto-vue-routes-plugin: ready ' + config.entry);
       callback(config);
     })
     .on("change", () => {
+      console.log('\x1B[32m%s\x1b[0m:','auto-vue-routes-plugin: change ' + config.entry);
       callback(config);
     })
     .on("unlinkDir", () => {
+      console.log('\x1B[32m%s\x1b[0m:','auto-vue-routes-plugin: unlinkDir ' + config.entry);
       callback(config);
     });
 }
-
-// export default AutoVueRoutesPlugin;
 
 module.exports = AutoVueRoutesPlugin;

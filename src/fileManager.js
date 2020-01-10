@@ -5,9 +5,7 @@ const fs = require("fs");
 const path = require("path");
 const glob = require("glob");
 
-// const utils = require('./_utils');
-import utils from "./_utils";
-
+const utils = require('./_utils');
 /**
  * 确保目录路径存在，若不存在则自动创建
  * @param {String} dirPath - 目录路径
@@ -387,6 +385,4 @@ const fileManager = {
   setES6ModuleFile: setES6ModuleFile
 };
 
-export default fileManager;
-
-// module.exports = fileManager;
+module.exports = fileManager;
